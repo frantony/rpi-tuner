@@ -25,9 +25,20 @@ MNTP2=$(mktemp -d)
 RP_ETC=$MNTP2/etc
 RP_RPI_TUNER=$RP_ETC/rpi-tuner
 
-mount ${TDEV}p1 $MNTP1
+get_part()
+{
+	TDEV=$1
+	PART=$2
 
-mount ${TDEV}p2 $MNTP2
+	lsblk -l ${TDEV} | awk '{ print $6, $1 }' | grep ^part | awk '{ print $2; }' | head -n${PART} | tail -n1
+}
+
+PART1=/dev/$(get_part ${TDEV} 1)
+PART2=/dev/$(get_part ${TDEV} 2)
+
+mount ${PART1} $MNTP1
+
+mount ${PART2} $MNTP2
 
 mkdir -p $RP_RPI_TUNER
 
