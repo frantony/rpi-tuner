@@ -37,7 +37,12 @@ echo > $MNTP1/ssh
 
 cp $0 $RP_RPI_TUNER/$(basename $0)
 echo "$0 $@" > $RP_RPI_TUNER/install-cmdline
-cp /sys/block/$(basename ${TDEV})/device/cid $RP_RPI_TUNER/cid
+
+CID=/sys/block/$(basename ${TDEV})/device/cid
+if [ -f "${CID}" ]; then
+	cp ${CID} $RP_RPI_TUNER/cid
+fi
+
 ( cd $RP_ETC && git init . )
 ( cd $RP_ETC && git add $(basename $RP_RPI_TUNER) )
 ( cd $RP_ETC && git commit -s -m "Initial commit" )
