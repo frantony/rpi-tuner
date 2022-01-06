@@ -61,3 +61,5 @@ cp $MNTP1/config.txt $RP_RPI_TUNER
 
 umount $MNTP1
 umount $MNTP2
+
+rmdir $MNTP1 $MNTP2
