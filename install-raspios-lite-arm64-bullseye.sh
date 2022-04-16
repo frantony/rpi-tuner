@@ -46,6 +46,9 @@ cp $MNTP1/config.txt $RP_RPI_TUNER
 
 echo > $MNTP1/ssh
 
+echo -n 'pi:' > $MNTP1/userconf
+echo 'raspberry' | openssl passwd -6 -stdin >> $MNTP1/userconf
+
 cp $0 $RP_RPI_TUNER/$(basename $0)
 echo "$0 $@" > $RP_RPI_TUNER/install-cmdline
 
