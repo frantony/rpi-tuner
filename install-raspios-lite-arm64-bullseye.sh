@@ -9,15 +9,15 @@ RP_HOSTNAME=$2
 test -b "$TDEV"
 test -n "$RP_HOSTNAME"
 
-PREF=https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-11-08/
-NAME=2021-10-30-raspios-bullseye-arm64-lite
-ZIP=$NAME.zip
+PREF=https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-04-07
+NAME=2022-04-04-raspios-bullseye-arm64-lite
 IMG=$NAME.img
+CIMG=$IMG.xz
 
-wget --continue $PREF/$ZIP
-wget --continue $PREF/${ZIP}.sha256
-unzip -f $ZIP
-sha256sum -c ${ZIP}.sha256
+wget --continue $PREF/$CIMG
+wget --continue $PREF/${CIMG}.sha256
+sha256sum -c ${CIMG}.sha256
+xz -cd $CIMG > $IMG
 dd if=$IMG of=$TDEV bs=128M status=progress
 
 MNTP1=$(mktemp -d)
