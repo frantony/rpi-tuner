@@ -9,8 +9,8 @@ RP_HOSTNAME=$2
 test -b "$TDEV"
 test -n "$RP_HOSTNAME"
 
-PREF=https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-04-07
-NAME=2022-04-04-raspios-bullseye-arm64-lite
+PREF=https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-09-26
+NAME=2022-09-22-raspios-bullseye-arm64-lite
 IMG=$NAME.img
 CIMG=$IMG.xz
 
