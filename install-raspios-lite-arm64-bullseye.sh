@@ -66,8 +66,8 @@ cp rpi-etc-gitignore $RP_ETC/.gitignore
 ( cd $RP_ETC && git commit -s -m "original $NAME etc state" )
 
 echo "$RP_HOSTNAME" > $RP_ETC/hostname
-( cd $RP_ETC && git commit -s -m "set hostname to $RP_HOSTNAME" hostname )
 sed -i "s/^\(127.0.1.1\)\(\s\+\).*$/\1\2$RP_HOSTNAME/" $RP_ETC/hosts
+( cd $RP_ETC && git commit -s -m "set hostname to $RP_HOSTNAME" hostname hosts )
 
 echo "enable_uart=1" >> $MNTP1/config.txt
 cp $MNTP1/config.txt $RP_RPI_TUNER
