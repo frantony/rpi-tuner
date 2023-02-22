@@ -3,6 +3,9 @@
 set -x
 set -e
 
+GIT_CONFIG_USER_NAME="${GIT_CONFIG_USER_NAME:-Your Name}"
+GIT_CONFIG_USER_EMAIL="${GIT_CONFIG_USER_EMAIL:-you@example.com}"
+
 TDEV=$1
 RP_HOSTNAME=$2
 
@@ -58,6 +61,10 @@ if [ -f "${CID}" ]; then
 fi
 
 ( cd $RP_ETC && git init . )
+
+git -C $RP_ETC config user.name "$GIT_CONFIG_USER_NAME"
+git -C $RP_ETC config user.email "$GIT_CONFIG_USER_EMAIL"
+
 ( cd $RP_ETC && git add $(basename $RP_RPI_TUNER) )
 ( cd $RP_ETC && git commit -s -m "Initial commit" )
 
